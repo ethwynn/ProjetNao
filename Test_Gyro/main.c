@@ -12,7 +12,7 @@
 #include <termios.h> /* POSIX terminal control definitions */
 
 
-
+//Serial port config
 void init_serial(int *serial_fd, struct termios *saveterm)
 {
 
@@ -45,22 +45,8 @@ void init_serial(int *serial_fd, struct termios *saveterm)
 }
 
 
-
+//getting Data
 void getData(unsigned char * buf, int fd){
-
-	unsigned char c;
-
-	read(fd, &c, 1);
-	if(c == 0xff){
-		buf[0]=c;
-		read(fd, buf+1, 7);
-	}
-
-}
-
-
-
-void getData2(unsigned char * buf, int fd){
 
 	unsigned char c;
 
@@ -74,7 +60,7 @@ void getData2(unsigned char * buf, int fd){
 }
 
 
-
+//processing function which return angle and may be changed to return the rate too
 double getAngle(unsigned char *buf){
 
 	short int rate;
